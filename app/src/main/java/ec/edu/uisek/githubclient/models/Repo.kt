@@ -1,6 +1,4 @@
-package ec.edu.uisek.githubclient.modeis
-
-import org.intellij.lang.annotations.Language
+package ec.edu.uisek.githubclient.models
 
 data class Repo(
     val id: Long,

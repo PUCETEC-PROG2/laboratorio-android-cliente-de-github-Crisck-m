@@ -1,4 +1,4 @@
-package ec.edu.uisek.githubclient.modeis
+package ec.edu.uisek.githubclient.models
 
 import com.google.gson.annotations.SerializedName
 

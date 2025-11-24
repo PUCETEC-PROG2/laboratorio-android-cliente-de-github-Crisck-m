@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:gravity="center_vertical">
+
+    <!-- Avatar del usuario (Redondo) -->
+    <ImageView
+        android:id="@+id/repoOwnerImage"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_launcher_foreground"
+        android:contentDescription="Avatar del propietario" />
+
+    <!-- Contenedor de Textos -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <!-- Fila 1: Nombre -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="@string/repo_name"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textSize="11sp"/>
+
+            <TextView
+                android:id="@+id/repoNameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre"
+                android:textSize="11sp"
+                android:paddingStart="8dp"
+                android:textColor="#333333"/>
+        </LinearLayout>
+
+        <!-- Fila 2: Descripción -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="@string/repo_description"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textSize="11sp"/>
+
+            <TextView
+                android:id="@+id/repoDescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Descripción..."
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:textSize="11sp"
+                android:paddingStart="8dp"
+                android:textColor="#333333"/>
+        </LinearLayout>
+
+        <!-- Fila 3: Lenguaje -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="@string/repo_lang"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textSize="11sp"/>
+
+            <TextView
+                android:id="@+id/repoLanguageTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lenguaje"
+                android:textSize="11sp"
+                android:paddingStart="8dp"
+                android:textColor="#333333"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
