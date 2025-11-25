@@ -27,12 +27,16 @@ class BlankFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_blank, container, false)
 
         // 1. Inicializar vistas
-        // Asegúrate de que 'repositoriesRecyclerView' sea el ID en tu fragment_blank.xml
         recyclerView = view.findViewById(R.id.repositoriesRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         // 2. Inicializar adaptador y asignarlo
-        adapter = RepoAdapter(emptyList())
+        // Se pasan lambdas vacías o con mensajes simples ya que la lógica principal está en MainActivity
+        adapter = RepoAdapter(
+            repoItems = emptyList(),
+            onEditClick = { Toast.makeText(context, "Editar desde Fragment no implementado", Toast.LENGTH_SHORT).show() },
+            onDeleteClick = { Toast.makeText(context, "Eliminar desde Fragment no implementado", Toast.LENGTH_SHORT).show() }
+        )
         recyclerView.adapter = adapter
 
         // 3. Obtener datos
@@ -42,29 +46,27 @@ class BlankFragment : Fragment() {
     }
 
     private fun fetchRepositories() {
-        // Ejecutar la llamada de red en un hilo I/O (secundario)
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                // Llama al servicio a través del cliente
-                // Cambia "google" por el usuario que necesites
                 val response = RetrofitClient.service.listRepos("google")
 
-                // Volver al hilo principal para actualizar la UI
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful && response.body() != null) {
                         adapter.updateData(response.body()!!)
                     } else {
-                        Toast.makeText(context, "Error ${response.code()}: ${response.message()}", Toast.LENGTH_LONG).show()
+                        // Verificar si context es nulo antes de usarlo
+                        context?.let {
+                            Toast.makeText(it, "Error ${response.code()}: ${response.message()}", Toast.LENGTH_LONG).show()
+                        }
                     }
                 }
             } catch (e: Exception) {
-                // Manejar errores de conexión
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(context, "Error de red: ${e.message}", Toast.LENGTH_LONG).show()
+                    context?.let {
+                        Toast.makeText(it, "Error de red: ${e.message}", Toast.LENGTH_LONG).show()
+                    }
                 }
             }
         }
     }
-
-    // ... (El resto de tu código, como el companion object) ...
 }
